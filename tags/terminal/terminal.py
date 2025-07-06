@@ -13,6 +13,9 @@ class Actions:
     def terminal_list_all_directories():
         """Lists all directories including hidden"""
 
+    def terminal_list_directories_in_reverse():
+        """Lists directories in reverse time order"""
+
     def terminal_change_directory(path: str):
         """Lists change directory"""
 

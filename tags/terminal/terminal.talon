@@ -3,6 +3,7 @@ tag: terminal
 # tags should be activated for each specific terminal in the respective talon file
 
 lisa [dir] [<user.text>]: user.terminal_list_directories(text or "")
+lisa reverse: user.terminal_list_directories_in_reverse()
 lisa all: user.terminal_list_all_directories()
 katie [dir] [<user.text>]: user.terminal_change_directory(text or "")
 katie root: user.terminal_change_directory_root()

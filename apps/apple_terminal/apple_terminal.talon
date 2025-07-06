@@ -23,3 +23,11 @@ suspend: key(ctrl-z)
 resume:
     insert("fg")
     key(enter)
+
+find grep:
+    "find . -type f -exec grep -Hi \"\" {} \\;"
+    edit.left()
+    repeat(6)
+
+find file:
+    "find . -type f -name "
