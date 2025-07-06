@@ -4,16 +4,16 @@ settings():
 
     # Uncomment to set the speech timeout. This is the amount of time after you stop
     # speaking until Talon starts processing the spoken audio. Default is 0.3s.
-    # speech.timeout = 0.3
+    speech.timeout = 0.3
 
     # Uncomment to enable dark mode for talon help menus
-    # imgui.dark_mode = true
+    imgui.dark_mode = true
 
     # If `true`, automatically show the picker GUI when the file manager has focus
     user.file_manager_auto_show_pickers = false
 
     # Set the number of command lines to display per help page
-    user.help_max_command_lines_per_page = 50
+    user.help_max_command_lines_per_page = 40
 
     # Set the number of contexts to display per help page
     user.help_max_contexts_per_page = 20
@@ -28,7 +28,7 @@ settings():
     user.mouse_gaze_scroll_speed_multiplier = 1.0
 
     # Set the maximum acceleration factor when scrolling continuously. 1=constant speed/no acceleration.
-    user.mouse_continuous_scroll_acceleration = 1
+    user.mouse_continuous_scroll_acceleration = 20 
 
     # If `true`, stop continuous scroll/gaze scroll with a pop
     user.mouse_enable_pop_stops_scroll = true
@@ -50,7 +50,7 @@ settings():
     user.hiss_scroll_debounce_time = 100
 
     # If `true`, hide the continuous scroll/gaze scroll GUI
-    user.mouse_hide_mouse_gui = false
+    user.mouse_hide_mouse_gui = true
 
     # If `true`, hide the cursor when enabling zoom mouse
     user.mouse_wake_hides_cursor = false
@@ -65,7 +65,7 @@ settings():
     user.grids_put_one_bottom_left = true
 
     # Set the default number of command history lines to display
-    user.command_history_display = 10
+    user.command_history_display = 20
 
     # Set the total number of command history lines to display
     user.command_history_size = 50
@@ -98,7 +98,7 @@ settings():
     # user.window_snap_screen = "size aware"
 
     # Puts Talon into sleep mode if no commands are spoken for a defined period of time.
-    # user.listening_timeout_minutes = 3
+    user.listening_timeout_minutes = 3
 
     # Time in seconds to wait for the clipboard to change when trying to get selected text
     # user.selected_text_timeout = 0.25
@@ -126,3 +126,5 @@ settings():
 # Uncomment the below to enable the experimental window layout commands
 # defined in window_layout.talon
 # tag(): user.experimental_window_layout
+
+tag(): user.emoji

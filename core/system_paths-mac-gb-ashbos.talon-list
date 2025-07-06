@@ -1,0 +1,16 @@
+list: user.system_paths
+hostname: mac-gb-ashbos
+-
+user: /Users/ashbos
+desktop: /Users/ashbos/Desktop
+desk: /Users/ashbos/Desktop
+documents: /Users/ashbos/Documents
+docks: /Users/ashbos/Documents
+downloads: /Users/ashbos/Downloads
+music: /Users/ashbos/Music
+pictures: /Users/ashbos/Pictures
+videos: /Users/ashbos/Videos
+talon home: /Users/ashbos/.talon
+talon recordings: /Users/ashbos/.talon/recordings
+talon user: /Users/ashbos/.talon/user
+home: /Users/ashbos
