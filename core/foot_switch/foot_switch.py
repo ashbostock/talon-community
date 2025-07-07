@@ -1,5 +1,7 @@
-from talon import Module, actions, cron, settings
+from talon import Module, actions, cron, settings, Context
 import time
+
+ctx = Context()
 
 HOLD_TIMEOUT = 0.2
 
@@ -12,6 +14,7 @@ DOWN = 0
 UP = 1
 
 mod = Module()
+
 current_state = [UP, UP, UP, UP]
 last_state = [UP, UP, UP, UP]
 timestamps = [0.0, 0.0, 0.0, 0.0]
@@ -99,8 +102,20 @@ class Actions:
     def foot_switch_right_down():
         """Foot switch button right:down"""
         actions.tracking.control_toggle()
+        if actions.tracking.control_enabled():
+            actions.user.connect_ocr_eye_tracker()
+            ctx.tags = [""]
+        else:
+            actions.user.disconnect_ocr_eye_tracker()
+            ctx.tags = ["user.gaze_ocr_commands_disabled"]
 
     def foot_switch_right_up(held: bool):
         """Foot switch button right:up"""
         if held:
             actions.tracking.control_toggle()
+            if actions.tracking.control_enabled():
+                actions.user.connect_ocr_eye_tracker()
+                ctx.tags = [""]
+            else:
+                actions.user.disconnect_ocr_eye_tracker()
+                ctx.tags = ["user.gaze_ocr_commands_disabled"]
