@@ -28,7 +28,7 @@ settings():
     user.mouse_gaze_scroll_speed_multiplier = 1.0
 
     # Set the maximum acceleration factor when scrolling continuously. 1=constant speed/no acceleration.
-    user.mouse_continuous_scroll_acceleration = 20 
+    user.mouse_continuous_scroll_acceleration = 20
 
     # If `true`, stop continuous scroll/gaze scroll with a pop
     user.mouse_enable_pop_stops_scroll = true
@@ -98,7 +98,7 @@ settings():
     # user.window_snap_screen = "size aware"
 
     # Puts Talon into sleep mode if no commands are spoken for a defined period of time.
-    user.listening_timeout_minutes = 3
+    user.listening_timeout_minutes = 5
 
     # Time in seconds to wait for the clipboard to change when trying to get selected text
     # user.selected_text_timeout = 0.25
