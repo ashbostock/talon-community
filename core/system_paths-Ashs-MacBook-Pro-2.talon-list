@@ -1,0 +1,16 @@
+list: user.system_paths
+hostname: Ashs-MacBook-Pro-2
+-
+user: /Users/ashbostock
+desktop: /Users/ashbostock/Desktop
+desk: /Users/ashbostock/Desktop
+documents: /Users/ashbostock/Documents
+docks: /Users/ashbostock/Documents
+downloads: /Users/ashbostock/Downloads
+music: /Users/ashbostock/Music
+pictures: /Users/ashbostock/Pictures
+videos: /Users/ashbostock/Videos
+talon home: /Users/ashbostock/.talon
+talon recordings: /Users/ashbostock/.talon/recordings
+talon user: /Users/ashbostock/.talon/user
+home: /Users/ashbostock
