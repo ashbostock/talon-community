@@ -1,3 +1,5 @@
+scroll toggle:              user.foot_switch_scroll_toggle()
+
 # Left button
 key(f13:down):              user.foot_switch_down_event(0)
 key(f13:up):                user.foot_switch_up_event(0)
