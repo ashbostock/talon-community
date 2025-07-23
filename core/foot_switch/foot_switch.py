@@ -13,11 +13,16 @@ TOP = 3
 DOWN = 0
 UP = 1
 
+SCROLL_DIRECTION_HORIZONTAL = 0
+SCROLL_DIRECTION_VERTICAL = 1
+
 mod = Module()
 
 current_state = [UP, UP, UP, UP]
 last_state = [UP, UP, UP, UP]
 timestamps = [0.0, 0.0, 0.0, 0.0]
+
+scroll_direction = SCROLL_DIRECTION_VERTICAL
 
 
 def on_interval():
@@ -64,6 +69,13 @@ def call_up_action(key: int, held: bool):
 @mod.action_class
 class Actions:
     # Key events. Don't touch these.
+    def foot_switch_scroll_toggle():
+        """Toggle scroll direction"""
+        global scroll_direction
+        if scroll_direction == SCROLL_DIRECTION_HORIZONTAL:
+            scroll_direction = SCROLL_DIRECTION_VERTICAL
+        else:
+            scroll_direction = SCROLL_DIRECTION_HORIZONTAL
 
     def foot_switch_down_event(key: int):
         """Foot switch key down event. Left(0), Center(1), Right(2), Top(3)"""
@@ -77,7 +89,10 @@ class Actions:
     # Foot switch button actions. Modify these to change button behavior.
     def foot_switch_top_down():
         """Foot switch button top:down"""
-        actions.user.mouse_scroll_up_continuous()
+        if scroll_direction == SCROLL_DIRECTION_HORIZONTAL:
+            actions.user.mouse_scroll_left_continuous()
+        else:
+            actions.user.mouse_scroll_up_continuous()
 
     def foot_switch_top_up(held: bool):
         """Foot switch button top:up"""
@@ -85,7 +100,10 @@ class Actions:
 
     def foot_switch_center_down():
         """Foot switch button center:down"""
-        actions.user.mouse_scroll_down_continuous()
+        if scroll_direction == SCROLL_DIRECTION_HORIZONTAL:
+            actions.user.mouse_scroll_right_continuous()
+        else:
+            actions.user.mouse_scroll_down_continuous()
 
     def foot_switch_center_up(held: bool):
         """Foot switch button center:up"""
