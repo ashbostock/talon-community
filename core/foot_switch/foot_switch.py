@@ -122,7 +122,7 @@ class Actions:
         actions.tracking.control_toggle()
         if actions.tracking.control_enabled():
             actions.user.connect_ocr_eye_tracker()
-            ctx.tags = [""]
+            ctx.tags = []
         else:
             actions.user.disconnect_ocr_eye_tracker()
             ctx.tags = ["user.gaze_ocr_commands_disabled"]
@@ -133,7 +133,7 @@ class Actions:
             actions.tracking.control_toggle()
             if actions.tracking.control_enabled():
                 actions.user.connect_ocr_eye_tracker()
-                ctx.tags = [""]
+                ctx.tags = []
             else:
                 actions.user.disconnect_ocr_eye_tracker()
                 ctx.tags = ["user.gaze_ocr_commands_disabled"]
