@@ -74,8 +74,10 @@ class Actions:
         global scroll_direction
         if scroll_direction == SCROLL_DIRECTION_HORIZONTAL:
             scroll_direction = SCROLL_DIRECTION_VERTICAL
+            actions.app.notify("Scroll direction set to vertical")
         else:
             scroll_direction = SCROLL_DIRECTION_HORIZONTAL
+            actions.app.notify("Scroll direction set to horizontal")
 
     def foot_switch_down_event(key: int):
         """Foot switch key down event. Left(0), Center(1), Right(2), Top(3)"""
