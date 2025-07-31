@@ -13,6 +13,8 @@ rows,rose
 colour,color
 behaviour,behavior
 favourite,favorite
+initialised,initialized
+initialise,initialize
 MySQL,my sequel
 cache,cash
 add,ad
