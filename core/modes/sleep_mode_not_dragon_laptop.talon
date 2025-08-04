@@ -7,4 +7,4 @@ hostname: Ashs-MacBook-Pro-2
 hostname: MacBookPro.broadband
 -
 
-^(wake mac)+$: speech.enable()
+^(wake [up] mac)+$: speech.enable()

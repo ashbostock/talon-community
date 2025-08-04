@@ -7,4 +7,4 @@ hostname: mac-gb-ashbos
 hostname: mac-uk-ashbos
 -
 
-^(wake work)+$: speech.enable()
+^(wake [up] work)+$: speech.enable()
