@@ -1,3 +1,6 @@
+enable gaze ocr:   user.set_gaze_ocr_enabled(true)
+disable gaze ocr:  user.set_gaze_ocr_enabled(false)
+
 scroll toggle:              user.foot_switch_scroll_toggle()
 
 # Left button

@@ -139,3 +139,10 @@ class Actions:
             else:
                 actions.user.disconnect_ocr_eye_tracker()
                 ctx.tags = ["user.gaze_ocr_commands_disabled"]
+
+    def set_gaze_ocr_enabled(enabled: bool):
+        """Enable or disable gaze OCR commands"""
+        if enabled:
+            ctx.tags = []
+        else:
+            ctx.tags = ["user.gaze_ocr_commands_disabled"]
