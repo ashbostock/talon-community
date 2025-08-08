@@ -26,6 +26,10 @@ bar source: user.vscode("workbench.view.scm")
 bar test: user.vscode("workbench.view.testing.focus")
 bar switch: user.vscode("workbench.action.toggleSidebarVisibility")
 
+# Secondary Side Bar
+sec: user.vscode("workbench.action.focusAuxiliaryBar")
+sec switch: user.vscode("workbench.action.toggleAuxiliaryBar")
+
 # Symbol search
 symbol hunt [<user.text>]:
     user.vscode("workbench.action.gotoSymbol")
@@ -287,3 +291,6 @@ cell run: user.vscode("notebook.cell.execute")
 
 install local: user.vscode("workbench.extensions.action.installVSIX")
 preview markdown: user.vscode("markdown.showPreview")
+
+copilot: user.vscode("inlineChat.start")
+copilot chat: user.vscode("workbench.panel.chat.view.copilot.focus")
