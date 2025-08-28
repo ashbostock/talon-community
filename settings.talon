@@ -62,7 +62,7 @@ settings():
     user.mouse_wheel_horizontal_amount = 40
 
     # If `true`, start mouse grid numbering on the bottom left (vs. top left)
-    user.grids_put_one_bottom_left = true
+    user.grids_put_one_bottom_left = false
 
     # Set the default number of command history lines to display
     user.command_history_display = 20
