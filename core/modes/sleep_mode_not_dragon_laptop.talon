@@ -5,6 +5,7 @@ not speech.engine: dragon
 not tag: user.deep_sleep
 hostname: Ashs-MacBook-Pro-M1
 hostname: MacBookPro.broadband
+hostname: MacBookPro
 -
 
 ^(wake [up] mac)+$: speech.enable()
