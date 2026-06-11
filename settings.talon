@@ -137,3 +137,4 @@ settings():
 # tag(): user.experimental_window_layout
 
 tag(): user.emoji
+tag(): user.unix_utilities
