@@ -1,5 +1,7 @@
 import os
 import re
+from contextlib import suppress
+from typing import Optional
 
 from talon import Context, Module, actions, app, ctrl, imgui, ui
 
@@ -98,8 +100,8 @@ def item_titles(items, fallback=None):
     for item in items:
         if title := element_title(item):
             yield title
-        elif fallback is not None:
-            if element := fallback(item):
+        elif fallback is not None:  # noqa: SIM102
+            if element := fallback(item):  # noqa: SIM102
                 if title := element_title(element):
                     yield title
 
@@ -112,8 +114,8 @@ def saved_item_selection_list(items, fallback=None):
         spoken_title = ""
         if title := element_title(item):
             spoken_title = spoken_forms(title)
-        elif fallback is not None:
-            if element := fallback(item):
+        elif fallback is not None:  # noqa: SIM102
+            if element := fallback(item):  # noqa: SIM102
                 if title := element_title(element):
                     spoken_title = spoken_forms(title)
         if spoken_title:
@@ -139,6 +141,10 @@ class Actions:
     def status_menus_toggle():
         """Display or hide titles of status menus"""
 
+    def active_menu_safe() -> Optional[ui.Element]:
+        """Returns the active menu if there is actually one (working around app/Talon issues)"""
+        return ui.active_menu()
+
 
 STATUS_MENU_TITLES = []
 
@@ -159,42 +165,47 @@ def gui_extras(gui: imgui.GUI):
 
 @ctx_mac.action_class("user")
 class UserActions:
-    def contextual_menu_open():
+    def active_menu_safe():
         if menu := ui.active_menu():
-            if menu.AXTopLevelUIElement.AXRole != "AXMenuBar":
-                # XXX assuming that you don't try to open a contextual menu
-                # XXX when a menubar menu is open; Talon sometimes gets confused
-                # XXX and the active menu gets "stuck"
-                return
+            role = menu.get("AXRole")
+            if role != "AXMenu":
+                # XXX Talon sometimes gets a notification on a non-menu
+                # XXX that gets "stuck" open and may then become invalid
+                # XXX (Safari is commonly responsible)
+                return None
+
+        return menu
+
+    def contextual_menu_open():
+        if actions.user.active_menu_safe() is not None:
+            return
 
         actions.key("menu")
         actions.sleep("50ms")
-        if ui.active_menu():
+        if actions.user.active_menu_safe() is not None:
             return
 
-        if (element := ui.focused_element()) is not None:
+        if (element := actions.user.focused_element_safe()) is not None:
             try:
                 element.perform("AXShowMenu")
                 actions.sleep("50ms")
-                if ui.active_menu():
+                if actions.user.active_menu_safe() is not None:
                     return
             except:
                 pass
 
         ctrl.mouse_click(1)
 
-        for attempt in range(10):
+        for _attempt in range(10):
             actions.sleep("50ms")
-            if ui.active_menu() is not None:
+            if actions.user.active_menu_safe() is not None:
                 return
 
         raise Exception("Unable to pop up contextual menu")
 
     def menu_item_select(menu_item: ui.Element):
-        try:
+        with suppress(ui.UIErr):  # XXX sometimes "fails" when it actually succeeds
             menu_item.perform("AXPress")
-        except:  # XXX sometimes "fails" when it actually succeeds
-            pass
 
     def menu_item_hover(menu_item: ui.Element):
         ctrl.mouse_move(*menu_item.AXFrame.center)
@@ -229,7 +240,7 @@ class UserActions:
 
 
 @ctx_win_citrix.action_class("user")
-class UserActions:
+class WinCitrixUserActions:
     def contextual_menu_open():
         actions.key("shift-f10")
 
@@ -238,14 +249,17 @@ class UserActions:
 def menu_items(phrase: list[str]):
     items = []
 
-    if menu := ui.active_menu():
+    if menu := actions.user.active_menu_safe():
         items = enabled_items_with_role(menu, "AXMenuItem")
         while parent := getattr(menu, "AXParent", None):
             if (parent_role := parent.AXRole) not in ("AXMenuBarItem", "AXMenuItem"):
                 break
             menu = parent.AXParent
             items += enabled_items_with_role(menu, parent_role)
-    else:
+    elif not (
+        (parent := actions.user.ui_element_active_window_or_sheet())
+        and (items := parent.children.find(AXRole="AXMenuItem", visible_only=True))
+    ):
         items = enabled_items_with_role(
             ui.active_app().element.AXMenuBar, "AXMenuBarItem"
         )
@@ -282,14 +296,14 @@ def status_menu_items_fallback():
     screen_rect = display_area().inset(-1)
 
     talon_pid = os.getpid()
-    for app in ui.apps():
-        if app.pid == talon_pid:
+    for a in ui.apps():
+        if a.pid == talon_pid:
             continue  # XXX can pop up menu extra but can't select from it
 
-        if "/XPCServices/" in app.exe:
+        if "/XPCServices/" in a.exe:
             continue  # XXX hangs; can we filter these out more cleanly?
 
-        if menu_bar := getattr(app.element, "AXExtrasMenuBar", None):
+        if menu_bar := getattr(a.element, "AXExtrasMenuBar", None):
             if (position := getattr(menu_bar, "AXPosition", None)) is None:
                 continue
 
