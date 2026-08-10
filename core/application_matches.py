@@ -71,6 +71,10 @@ os: windows
 and app.exe: /^powershell\.exe$/i
 """
 
+apps.vi = """
+win.title:/[Vv][Ii]/
+"""
+
 apps.vim = """
-win.title:/VIM/
+win.title:/[Vv][Ii][Mm]/
 """
