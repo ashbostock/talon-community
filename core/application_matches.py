@@ -71,10 +71,6 @@ os: windows
 and app.exe: /^powershell\.exe$/i
 """
 
-apps.vi = """
-win.title:/[Vv][Ii]/
-"""
-
 apps.vim = """
-win.title:/[Vv][Ii][Mm]/
+win.title: /\\b[Vv][Ii][Mm]?\\b/
 """

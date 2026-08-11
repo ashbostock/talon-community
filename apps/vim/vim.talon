@@ -1,5 +1,4 @@
 os: mac
-app: vi
 app: vim
 -
 
