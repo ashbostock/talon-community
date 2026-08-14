@@ -18,6 +18,12 @@ settings():
     # Set the number of contexts to display per help page
     user.help_max_contexts_per_page = 20
 
+    # Set the number of files/folders to display per file manager picker page
+    user.file_manager_imgui_limit = 40
+
+    # Set the max characters to display per file/folder name before truncating with ..
+    user.file_manager_string_limit = 40
+
     # Uncomment to always sort help contexts alphabetically.
     # user.help_sort_contexts_by_specificity = false
 
@@ -112,6 +118,12 @@ settings():
 
     # Time in seconds to sleep after inserting text with `insert_between` (e.g. when using paired delimiters like 'box' or 'round'), before moving the cursor back. Useful to set on a per-application basis, to prevent moving the moving the cursor before text is inserted.
     # user.insert_between_wait = 0
+
+    # Don't auto-connect the eye tracker at startup (connect manually when needed)
+    user.ocr_connect_tracker = false
+
+    # OCR the active window instead of the main screen when no eye tracker data is available
+    user.ocr_behavior_when_no_eye_tracker = "ACTIVE_WINDOW"
 
 # Uncomment to enable the curse yes/curse no commands (show/hide mouse cursor).
 # See issue #688 for more detail: https://github.com/talonhub/community/issues/688
