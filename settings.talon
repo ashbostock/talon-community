@@ -125,6 +125,9 @@ settings():
     # OCR the active window instead of the main screen when no eye tracker data is available
     user.ocr_behavior_when_no_eye_tracker = "ACTIVE_WINDOW"
 
+    # If deprecated commands should throw an exception, which stops the commands from running. You might find this helps you learn the new replacement commands faster.
+    # user.strict_command_deprecation = true
+
 # Uncomment to enable the curse yes/curse no commands (show/hide mouse cursor).
 # See issue #688 for more detail: https://github.com/talonhub/community/issues/688
 # tag(): user.mouse_cursor_commands_enable

@@ -23,11 +23,16 @@ range
 reversed
 round
 set
-split
 sorted
 string: "str"
 sum
 tuple
 type
-update
 zip
+
+# Talon Python functions
+cron after: cron.after
+cron cancel: cron.cancel
+cron interval: cron.interval
+F S watch: fs.watch
+settings get: "settings.get"
