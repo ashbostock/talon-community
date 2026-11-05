@@ -182,14 +182,6 @@ all_traits = {
 }
 
 
-# tag: libraries
-ctx.lists["user.code_libraries"] = {
-    "eye oh": "std::io",
-    "file system": "std::fs",
-    "envy": "std::env",
-    "collections": "std::collections",
-}
-
 # tag: functions_common
 ctx.lists["user.code_common_function"] = {
     "drop": "drop",
@@ -265,6 +257,7 @@ operators = Operators(
     MATH_AND=" && ",
     MATH_OR=" || ",
     ASSIGNMENT_INCREMENT=" += 1",
+    ASSIGNMENT_DECREMENT=" -= 1",
     # code_operators_pointer
     POINTER_INDIRECTION="*",
     POINTER_ADDRESS_OF="&",
